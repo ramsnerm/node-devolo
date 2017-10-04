@@ -167,6 +167,24 @@ var Devolo = (function () {
                 else if (item.properties.deviceModelUID.indexOf('Shutter') > -1) {
                     device = new DevoloDevice_1.ShutterDevice();
                 }
+                else if (item.properties.deviceModelUID.indexOf('Relay') > -1) {
+                    device = new DevoloDevice_1.GenericSwitchDevice();
+                }
+
+                else if (item.properties.deviceModelUID.indexOf('devolo.model.Unknown:Device') > -1) {
+                    var created = false;
+                    for (var e = 0; e < item.properties.elementUIDs.length; e++) {
+                        var el = item.properties.elementUIDs[e];
+                        if ((el.indexOf('devolo.BinarySwitch:hdm:ZWave') > -1 && el.endsWith('#1')) || (el.indexOf('devolo.BinarySwitch:hdm:ZWave') > -1 )) {
+                        //if (el.indexOf('devolo.BinarySwitch:hdm:ZWave') > -1 && el.endsWith('#1')) {
+                            //console.log("GenericSwitchDevice detected", item.properties.itemName);
+                            device = new DevoloDevice_1.GenericSwitchDevice();
+                            created = true;
+                        }
+                    }
+                    if (created == false) continue;
+                }
+
                 else {
                     console.log('Device', item.properties.deviceModelUID, 'is not supported (yet). Open an issue on github and ask for adding it.');
                     continue;

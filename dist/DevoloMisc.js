@@ -1,6 +1,7 @@
 "use strict";
 var DevoloApi_1 = require("./DevoloApi");
 var events_1 = require("events");
+require('events').EventEmitter.defaultMaxListeners = 50;
 var Zone = (function () {
     function Zone(id, name, devices) {
         this.id = id;

@@ -372,3 +372,11 @@ var ShutterDevice = (function (_super) {
     return ShutterDevice;
 }(Device));
 exports.ShutterDevice = ShutterDevice;
+var GenericSwitchDevice = (function (_super) {
+    __extends(GenericSwitchDevice, _super);
+    function GenericSwitchDevice() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return GenericSwitchDevice;
+}(Device));
+exports.GenericSwitchDevice = GenericSwitchDevice;
